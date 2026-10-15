@@ -1,0 +1,13 @@
+# Normalise every text file to LF, both in the repository and in the working tree.
+#
+# Without this, git stores bytes verbatim and any editor that writes CRLF turns an
+# entire file into a diff, which buries real changes in whitespace noise. This repo
+# is 100% text and was 100% LF at HEAD, so `text=auto eol=lf` is a no-op for existing
+# files and simply prevents the churn from coming back.
+#
+# `text=auto` keeps git auto-detecting binaries and leaving them untouched, so this
+# stays safe if an image or font is committed later.
+* text=auto eol=lf
+
+# Lockfiles are machine-generated; keep them LF and never let a formatter touch them.
+package-lock.json text eol=lf
